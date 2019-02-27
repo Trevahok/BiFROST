@@ -14,13 +14,22 @@ body{
 {% endblock style %}
 
 {% block content %}
+<form  class="dropzone"></form>
 <div class="container-fluid jumbotron p-auto ">
 <div class="row justify-content-center align-items-center">
 <form method="POST" class="card col-md-8 col-lg-5 p-3 shadow" enctype="multipart/form-data">
     {% csrf_token %}
         <br>
+        {% comment %} {% if 'file' in form.fields %} there is a file {% endif %} {% endcomment %}
         <div class="card-body">
-        {{form|crispy}}
+        {% for field in form %}
+        {% if field.name == 'file' %}
+            <input type="file" name="name" id="name" class='jumbotron w-100 text-success border-success border rounded'>
+        {% else %}
+            {{field|as_crispy_field}}
+        {% endif %}
+        
+        {% endfor %}
         </div>
         <button class="btn btn-info">Submit</button>
 </form>

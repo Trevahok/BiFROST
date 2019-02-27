@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     'bifrost_bridge',
     'authentication',
+    'process_scada',
 ]
 
 MIDDLEWARE = [
