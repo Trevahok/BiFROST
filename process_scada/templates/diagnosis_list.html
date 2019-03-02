@@ -1,0 +1,41 @@
+{% extends 'base_list.html' %}
+
+{% block table %}
+<thead>
+    <th>Timestamp</th>
+    <th>Filter</th>
+    <th>Error Code</th>
+    <th>Details</th>
+    <th>Edit</th>
+    <th>Delete</th>
+</thead>
+<tbody>
+
+<tr>
+{% for diagnosis in object_list %}
+    <td>{{diagnosis.timestamp}}</td>
+    <td>{{diagnosis.diagnosis_filter}}</td>
+    <td>{{diagnosis.error_code}}</td>
+    <td>{{diagnosis.details}}</td>
+    <td><a class="btn btn-primary" href="{% url 'update_diagnosis' diagnosis.pk %}"><span class="fa fa-pen"></span></a></td>
+    <td><button class="btn btn-danger" onclick="deleteDiagnosis('{% url 'delete_diagnosis' diagnosis.pk %}')"><span class="fa fa-trash"></span></button></td>
+</tr>
+{% endfor %}
+</tbody>
+
+<script>
+   function deleteDiagnosis(url)
+    {
+        console.log(url);
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function(response)
+            {
+                showModal({'head':'Delete Diagnosis ?','body': response, 'url':url });
+            }
+        });
+    }
+</script>
+
+{% endblock table %}

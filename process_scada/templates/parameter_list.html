@@ -1,0 +1,41 @@
+{% extends 'base_list.html' %}
+
+{% block table %}
+<thead>
+    <th>S.No.</th>
+    <th>Parameter Name</th>
+    <th>Parameter Description</th>
+    <th>Parameter Value</th>
+    <th>Edit</th>
+    <th>Delete</th>
+</thead>
+<tbody>
+
+<tr>
+{% for parameter in object_list %}
+    <td>{{parameter.sno}}</td>
+    <td>{{parameter.name}}</td>
+    <td>{{parameter.description |truncatewords:30 }} </td>
+    <td>{{parameter.value}}</td>
+        <td><a class="btn btn-primary" href="{% url 'update_parameter' parameter.pk %}"><span class="fa fa-pen"></span></a></td>
+    <td><button class="btn btn-danger" onclick="deleteParameter('{% url 'delete_parameter' parameter.pk %}')"><span class="fa fa-trash"></span></button></td>
+</tr>
+{% endfor %}
+</tbody>
+
+<script>
+   function deleteParameter(url)
+    {
+        console.log(url);
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function(response)
+            {
+                showModal({'head':'Delete Parameter ?','body': response, 'url':url });
+            }
+        });
+    }
+</script>
+
+{% endblock table %}

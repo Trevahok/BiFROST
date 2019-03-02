@@ -1,0 +1,45 @@
+{% extends 'base_list.html' %}
+
+{% block table %}
+<thead>
+    <th>Timestamp</th>
+    <th>Type</th>
+    <th>Prod. x1000</th>
+    <th>MMV</th>
+    <th>SRel</th>
+    <th>PMV</th>
+    <th>Edit</th>
+    <th>Delete</th>
+</thead>
+<tbody>
+
+<tr>
+{% for production in object_list %}
+    <td>{{production.time}}</td>
+    <td>{{production.types}}</td>
+    <td>{{production.quantity}}</td>
+    <td>{{production.comp_mmv}}</td>
+    <td>{{production.comp_srel}}</td>
+    <td>{{production.comp_pmv}}</td>
+    <td><a class="btn btn-primary" href="{% url 'update_production' production.pk %}"><span class="fa fa-pen"></span></a></td>
+    <td><button class="btn btn-danger" onclick="deleteProduction('{% url 'delete_production' production.pk %}')"><span class="fa fa-trash"></span></button></td>
+</tr>
+{% endfor %}
+</tbody>
+
+<script>
+   function deleteProduction(url)
+    {
+        console.log(url);
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function(response)
+            {
+                showModal({'head':'Delete Diagnosis ?','body': response, 'url':url });
+            }
+        });
+    }
+</script>
+
+{% endblock table %}

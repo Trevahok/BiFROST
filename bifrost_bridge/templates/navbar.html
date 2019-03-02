@@ -27,20 +27,49 @@
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    <span class="fa fa-chalkboard-teacher"></span> Dropdown
-                </a>
-                <div class="dropdown-menu">
-                    <a href="#" class="dropdown-item">
-                        <span class="fa fa-eye"></span> Dropdown Item 1
-                    </a>
-                </div>
-            </li>
             <li class="nav-item">
                 <a href="{% url 'file_upload' %}" class="nav-link">
                     <span class="fa fa-upload"></span> Upload files
                 </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    <span class="fa fa-gear"></span> Parameters
+                </a>
+                <div class="dropdown-menu">
+                    <a href="{% url 'view_parameter'%}" class="dropdown-item">
+                        <span class="fa fa-eye"></span> View Parameters
+                    </a>
+                    <a href="{% url 'add_parameter'%}" class="dropdown-item">
+                        <span class="fa fa-plus"></span> Add Parameters
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    <span class="fa fa-chalkboard-teacher"></span> Diagnosis
+                </a>
+                <div class="dropdown-menu">
+                    <a href="{% url 'view_diagnosis'%}" class="dropdown-item">
+                        <span class="fa fa-eye"></span> View Diagnosis
+                    </a>
+                    <a href="{% url 'add_diagnosis'%}" class="dropdown-item">
+                        <span class="fa fa-plus"></span> Add Diagnosis
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    <span class="fa fa-chalkboard-teacher"></span> Productions
+                </a>
+                <div class="dropdown-menu">
+                    <a href="{% url 'view_production'%}" class="dropdown-item">
+                        <span class="fa fa-eye"></span> View Productions
+                    </a>
+                    <a href="{% url 'add_production'%}" class="dropdown-item">
+                        <span class="fa fa-plus"></span> Add Production
+                    </a>
+                </div>
             </li>
         </ul>
         <!--right aligned navbar content-->
