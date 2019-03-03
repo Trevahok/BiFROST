@@ -1,0 +1,41 @@
+{% extends 'base_list.html' %}
+
+{% block table %}
+<thead>
+    <th>Batch Number</th>
+    <th>Product</th>
+    <th>Visit</th>
+    <th>Edit</th>
+    <th>Delete</th>
+</thead>
+<tbody>
+
+{% for batch in object_list %}
+<tr>
+        <td>{{batch.batch_no}}</td>
+        <td>{{batch.product}}</td>
+        <td><a href="{% url 'detail_batch' batch.pk%} " class='btn btn-success'>
+        <i class="fas fa-search    "></i>
+        </a></td>
+        <td><a class="btn btn-primary" href="{% url 'update_batch' batch.pk %}"><span class="fa fa-pen"></span></a></td>
+        <td><button class="btn btn-danger" onclick="deleteBatch('{% url 'delete_batch' batch.pk %}')"><span class="fa fa-trash"></span></button></td>
+</tr>
+{% endfor %}
+</tbody>
+
+<script>
+   function deleteBatch(url)
+    {
+        console.log(url);
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function(response)
+            {
+                showModal({'head':'Delete Batch ?','body': response, 'url':url });
+            }
+        });
+    }
+</script>
+
+{% endblock table %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container h-100 mt-3">
+    <h1 class='text-center jumbotron'>Product Details</h1>
+    <hr>
+    <div class='table-responsive'>
+        <hr>
+            <h3>Production Report</h3>
+            <table class="table-striped table col-12 table-hover ">
+                <thead>
+                    <th>Batch No.</th>
+                    <th>View</th>
+                    <th>Edit</th>
+                </thead>
+                <tbody>
+                    {% for batch in product.batch_set.all %}
+                    <tr>
+                        <td>{{batch.batch_no}}</td>
+                        <td><a href="{% url 'detail_batch' batch.pk%}" class="btn btn-success"> <i class="fa fa-eye" aria-hidden="true"></i> </a></td>
+                        <td><a class="btn btn-primary" href="{% url 'update_batch' batch.pk %}"><i class="fa fa-pen"></i></a></td>
+                    </tr>
+
+                        {% endfor %}
+                </tbody>
+            </table>
+    </div>
+</div>
+    {% endblock content %}

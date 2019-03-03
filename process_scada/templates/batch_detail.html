@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br>
+<div class="container h-100 mt-3">
+<h1 class='text-center jumbotron'>Batch Details</h1>
+<hr>
+<div class='table-responsive'>
+<hr>
+<a class="btn btn-warning" data-toggle="collapse" href="#prod" role="button" aria-expanded="false" aria-controls="prod" style="width: 100%;">
+    <h3>Production Report</h3>
+</a>
+<div class="collapse" id="prod">
+<table class="table-striped table col-12 table-hover " >
+<thead>
+<th>Timestamp</th>
+<th>Types</th>
+<th>Quantity</th>
+<th>Compression Force <br>MMV</th>
+<th>Compression Force <br>S-Rel %</th>
+<th>Compression Force <br>PMV</th>
+<th>Edit</th>
+</thead>
+<tbody >
+{% for production in batch.production_set.all %}
+<tr>
+    <td>{{production.time}}</td>
+    <td>{{production.types}}</td>
+    <td>{{production.quantity}}</td>
+    <td>{{production.comp_mmv}}</td>
+    <td>{{production.comp_srel}}</td>
+    <td>{{production.comp_pmv}}</td>
+    <td><a class="btn btn-primary" href="{% url 'update_production' production.pk %}"><i class="fa fa-pen"></i></a></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+<hr>
+<a class="btn btn-secondary" data-toggle="collapse" href="#change" role="button" aria-expanded="false" aria-controls="change" style="width: 100%;">
+    <h3>Change Report</h3>
+</a>
+<div class="collapse" id="change">
+<table class="table-striped table col-12 table-hover ">
+<thead>
+<th>Time</th>
+<th>Operation</th>
+<th>Description</th>
+<th>Edit</th>
+</thead>
+<tbody>
+{% for change in batch.change_set.all %}
+<tr>
+    <td>{{change.time}}</td>
+    <td>{{change.operation}}</td>
+    <td>{{change.description}}</td>
+    <td><a class="btn btn-primary" href="{% url 'update_change' change.pk %}"><i class="fa fa-pen"></i></a></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+<hr>
+<a class="btn btn-success" data-toggle="collapse" href="#diagno" role="button" aria-expanded="false" aria-controls="diagno" style="width: 100%;">
+    <h3>Diagnosis Report</h3>
+</a>
+<table class="table-striped table col-12 table-hover collapse" id="diagno">
+<thead>
+<th>Timestamp</th>
+<th>Error Code</th>
+<th>Filter</th>
+<th>Details</th>
+<th>Edit</th>
+</thead>
+{% for diagnosis in batch.diagnosis_set.all %}
+<tr>
+    <td>{{diagnosis.timestamp}}</td>
+    <td>{{diagnosis.error_code}}</td>
+    <td>{{diagnosis.diagnosis_filter}}</td>
+    <td>{{diagnosis.details}}</td>
+    <td><a class="btn btn-primary" href="{% url 'update_diagnosis' diagnosis.pk %}"><i class="fa fa-pen"></i></a></td>
+</tr>
+{% endfor %}
+</table>
+</div>
+</div>
+
+{% endblock content %}
+{% block script %}
+
+{% endblock script %}

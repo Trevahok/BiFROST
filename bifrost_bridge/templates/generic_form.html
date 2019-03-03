@@ -23,11 +23,7 @@ body{
         {% comment %} {% if 'file' in form.fields %} there is a file {% endif %} {% endcomment %}
         <div class="card-body">
         {% for field in form %}
-        {% if field.name == 'file' %}
-            <input type="file" name="name" id="name" class='jumbotron w-100 text-success border-success border rounded'>
-        {% else %}
             {{field|as_crispy_field}}
-        {% endif %}
         
         {% endfor %}
         </div>

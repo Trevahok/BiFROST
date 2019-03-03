@@ -71,6 +71,45 @@
                     </a>
                 </div>
             </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    <span class="fa fa-chalkboard-teacher"></span> Change Report
+                </a>
+                <div class="dropdown-menu">
+                    <a href="{% url 'view_change'%}" class="dropdown-item">
+                        <span class="fa fa-eye"></span> View Change List
+                    </a>
+                    <a href="{% url 'add_change'%}" class="dropdown-item">
+                        <span class="fa fa-plus"></span> Add Change
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    <span class="fa fa-chalkboard-teacher"></span> Batch
+                </a>
+                <div class="dropdown-menu">
+                    <a href="{% url 'view_batch'%}" class="dropdown-item">
+                        <span class="fa fa-eye"></span> View Batches
+                    </a>
+                    <a href="{% url 'add_batch'%}" class="dropdown-item">
+                        <span class="fa fa-plus"></span> Add Batch
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    <span class="fa fa-chalkboard-teacher"></span> Products
+                </a>
+                <div class="dropdown-menu">
+                    <a href="{% url 'view_product'%}" class="dropdown-item">
+                        <span class="fa fa-eye"></span> View Product List
+                    </a>
+                    <a href="{% url 'add_product'%}" class="dropdown-item">
+                        <span class="fa fa-plus"></span> Add Product
+                    </a>
+                </div>
+            </li>
         </ul>
         <!--right aligned navbar content-->
         <ul class='navbar-nav my-0'>

@@ -17,7 +17,7 @@
     <td>{{parameter.name}}</td>
     <td>{{parameter.description |truncatewords:30 }} </td>
     <td>{{parameter.value}}</td>
-        <td><a class="btn btn-primary" href="{% url 'update_parameter' parameter.pk %}"><span class="fa fa-pen"></span></a></td>
+    <td><a class="btn btn-primary" href="{% url 'update_parameter' parameter.pk %}"><span class="fa fa-pen"></span></a></td>
     <td><button class="btn btn-danger" onclick="deleteParameter('{% url 'delete_parameter' parameter.pk %}')"><span class="fa fa-trash"></span></button></td>
 </tr>
 {% endfor %}
