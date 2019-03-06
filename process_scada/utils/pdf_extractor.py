@@ -15,7 +15,7 @@ def parse_diagnosis(data,page):
             row = rows[i].split("  ")
             row = [col.strip() for col in row if col.strip() != '']
             rows[i] = [times[i]] + row 
-            rows[i][0] = datetime.strftime(datetime.strptime(dates[k-1],'%d/%m/%Y'),'%Y-%m-%d') + ' ' + rows[i][0]
+            rows[i][0] = datetime.strftime(datetime.strptime(dates[k-1],'%m/%d/%Y'),'%Y-%m-%d') + ' ' + rows[i][0]
             return_data.append(rows[i])
     return return_data
 
@@ -32,7 +32,7 @@ def parse_change(data,page):
             for o in operations:
                 if o.lower() in str(rows[i]).lower():
                     rows[i] = [times[i]] + [o] + [rows[i][re.search(o.lower(), rows[i].lower()).span()[1]:]]
-                    rows[i][0] = datetime.strftime(datetime.strptime(dates[k-1],'%d/%m/%Y'),'%Y-%m-%d') + ' ' + rows[i][0]
+                    rows[i][0] = datetime.strftime(datetime.strptime(dates[k-1],'%m/%d/%Y'),'%Y-%m-%d') + ' ' + rows[i][0]
                     rows[i][-1] = rows[i][-1].strip()
                     return_data.append( rows[i])
     return return_data
@@ -53,7 +53,7 @@ def parse_production(data, page):
                 for y in x:
                     row.append(y)
             rows[i] = [times[i], *row]
-            rows[i][0] = datetime.strftime(datetime.strptime(dates[k-1],'%d/%m/%Y'),'%Y-%m-%d') + ' ' + rows[i][0]
+            rows[i][0] = datetime.strftime(datetime.strptime(dates[k-1],'%m/%d/%Y'),'%Y-%m-%d') + ' ' + rows[i][0]
             return_data.append(rows[i])
             print(row)
     return return_data

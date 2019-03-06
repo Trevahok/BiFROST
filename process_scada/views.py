@@ -45,6 +45,7 @@ class FileUploadView(LoginRequiredMixin , generic.FormView):
                     print('change form is valid ')
                     change_form.save()
                 else:
+                    print(change_form.__dict__)
                     print('change form is invalid ')
 
             print('diagnosis is doing ')
@@ -183,6 +184,7 @@ class ApiEndpoint(generic.View):
         batch = data['batch']
         product = data['product']
         print(product)
+        print(data['production'])
         product_model, created = models.Product.objects.get_or_create(name=product)
         batch_model, created = models.Batch.objects.get_or_create(product=product_model, batch_no=batch)
         product_form = forms.ProductForm(data={'name':product})
@@ -217,7 +219,27 @@ class ApiEndpoint(generic.View):
                 diagnosis_form.save()
             else:
                 print('diagnosis form is invalid ')
-                return HttpResponse('Failed, Diagnosis form has redundancy or error')
+            
+        for row in data['production']:
+            print(row)
+            final_data = {
+                'time': row[0],
+                'types': row[1],
+                'quantity': row[2],
+                'comp_mmv': row[3],
+                'comp_srel': row[4],
+                'comp_pmv': row[5],
+                'batch': batch_model.pk,
+            }
+            production_form = forms.ProductionForm(data=final_data) 
+            print(production_form.__dict__)
+            if production_form.is_valid():
+                print('production form is valid ')
+                production_form.save()
+            else:
+                print('production form is invalid ')
+
+            
 
         
         return HttpResponse('success')
